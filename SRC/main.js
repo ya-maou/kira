@@ -1,12 +1,14 @@
-import { Client, Events, GatewayIntentBits } from 'discord.js';
-import dotenv from 'dotenv';
+import { Client, Events, GatewayIntentBits } from 'discord.js'
+import vuelnit from '@/core/vue'
+import dotenv from 'dotenv'
 
-dotenv.config();
+vuelnit()
+dotenv.config()
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] })
 
-client.once(Events.ClientReady, c => {
-	console.log(`Ready! Logged in as ${c.user.tag}`);
+client.once(Events.ClientReady, (c) => {
+	console.log(`Ready! Logged in as ${c.user.tag}`)
 });
 
-client.login(process.env.TOKEN);
+client.login(process.env.TOKEN)
