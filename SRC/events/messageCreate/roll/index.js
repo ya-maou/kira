@@ -2,7 +2,6 @@ import { Events } from 'discord.js';
 export const event = {
     name: Events.MessageCreate,
 };
-
 export const action = async (message) => {
     if (message.author.bot) return;
 
@@ -20,14 +19,11 @@ export const action = async (message) => {
         if (randomNumber < number) {
             if (randomNumber == 1) {
                 await message.reply(`## 啊！大成功！<@${message.author.id}>\n${text} [ ${number} ] → ${randomNumber}`);
-            } 
-            else if (randomNumber < 4) {
+            } else if (randomNumber < 4) {
                 await message.reply(`## 大成功！<@${message.author.id}>\n${text} [ ${number} ] → ${randomNumber}`);
-            }
-            else if (randomNumber < extremeScusses) {
+            } else if (randomNumber < extremeScusses) {
                 await message.reply(`### 極限成功 <@${message.author.id}>\n${text} [ ${number} ] → ${randomNumber}`);
-            }
-            else if (randomNumber < hardScusses) {
+            } else if (randomNumber < hardScusses) {
                 await message.reply(`### 困難成功 <@${message.author.id}>\n${text} [ ${number} ] → ${randomNumber}`);
             } else {
                 await message.reply(`### 通常成功 <@${message.author.id}>\n${text} [ ${number} ] → ${randomNumber}`);
