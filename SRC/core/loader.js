@@ -6,8 +6,10 @@ const updateSlashCommands = async(commands) => {
     const rest = new REST().setToken(process.env.TOKEN)
 
     const guildIds = [
-        '986515567328505896',
-        '1223820038885085281',
+        '986515567328505896', //my
+        '1223820038885085281', //liber
+        '866892665617645598', //1987
+        '1244677125823270943',
     ];
 
     for (const guildId of guildIds) {

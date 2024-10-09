@@ -13,7 +13,7 @@ export const action = async (message) => {
         const text = match[2];
         
         const hardScusses = Math.floor(number / 2);
-        const extremeScusses = Math.floor(number / 4);
+        const extremeScusses = Math.floor(number / 5);
         
         const randomNumber = Math.floor(Math.random() * 100) + 1;
         if (randomNumber < number) {
