@@ -1,3 +1,5 @@
+//loader.js
+
 import { REST,Routes, Collection } from'discord.js'
 import fg from 'fast-glob'
 import { useAppStore } from '@/store/app'
@@ -10,6 +12,7 @@ const updateSlashCommands = async(commands) => {
         '1223820038885085281', //liber
         '866892665617645598', //1987
         '1244677125823270943',
+        '1236307158426189914',//trash
     ];
 
     for (const guildId of guildIds) {
