@@ -4,6 +4,7 @@ import dotenv from 'dotenv'
 import {useAppStore} from '@/store/app'
 import{ loadCommands, loadEvents }from '@/core/loader'
 import fs from 'fs'
+import db from '@/core/database.js'
 
 vuelnit()
 dotenv.config()
@@ -35,5 +36,17 @@ const loadVoiceRecognition = () => {
 
 // Load voice recognition event
 loadVoiceRecognition();
+
+// // Example of using the db connection
+// async function start() {
+//     try {
+//         const [rows] = await db.query('SELECT * FROM menu'); // Example query
+//         console.log(rows);
+//     } catch (error) {
+//         console.error('Database error:', error.message);
+//     }
+// }
+
+// start();
 
 client.login(process.env.TOKEN)

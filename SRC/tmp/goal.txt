@@ -1,8 +1,0 @@
-1.  制定適用內部規則的骰子。
-    Make dice for which house rules apply.
-
-2.  儲存角色卡的數值（使用資料庫？）。
-    Store character card values ​​(using database?).
-
-3.  簡易化擲骰。
-    Simplified dice rolling.
