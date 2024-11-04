@@ -1,0 +1,64 @@
+import { SlashCommandBuilder } from 'discord.js';
+import { joinVoiceChannel } from '@discordjs/voice';
+import { readdir } from 'fs/promises'; // 使用 fs.promises 的 readdir 來讀取資料夾
+import path from 'path';
+
+export const command = new SlashCommandBuilder()
+    .setName('join')
+    .setDescription('Join the voice channel');
+
+export const action = async (interaction) => {
+    const member = interaction.member;
+    const channel = member.voice.channel;
+
+    if (!channel) {
+        return interaction.reply('You need to join a voice channel first!');
+    }
+
+    try {
+        // Join the voice channel
+        const connection = joinVoiceChannel({
+            channelId: channel.id,
+            guildId: channel.guild.id,
+            adapterCreator: channel.guild.voiceAdapterCreator,
+        });
+
+        connection.on('ready', async () => {
+            console.log('Connected to the voice channel.');
+            interaction.reply('Successfully joined the voice channel!');
+
+            // 指定你想讀取的資料夾路徑
+            const folderPath = path.resolve('path/to/your/folder');
+
+            try {
+                // 讀取資料夾內容
+                const files = await readdir(folderPath);
+                console.log(`Files in the folder: ${files.join(', ')}`);
+
+                // 假設每個文件是一個可以運行的功能
+                files.forEach((file) => {
+                    const filePath = path.join(folderPath, file);
+                    // 動態引入文件中的功能
+                    import(filePath).then(module => {
+                        if (typeof module.default === 'function') {
+                            module.default(); // 執行功能
+                        }
+                    }).catch(error => {
+                        console.error(`Error importing ${file}:`, error);
+                    });
+                });
+            } catch (readError) {
+                console.error('Error reading the folder:', readError);
+            }
+        });
+
+        connection.on('error', (error) => {
+            console.error('Error with the voice connection:', error);
+            interaction.reply('Sorry, an error occurred while joining the voice channel.');
+        });
+
+    } catch (error) {
+        console.error('Error joining the voice channel:', error);
+        interaction.reply('Sorry, I could not join the voice channel.');
+    }
+};
