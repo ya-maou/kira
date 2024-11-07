@@ -1,5 +1,4 @@
 // src/commands/ping/index.js
-
 import { SlashCommandBuilder } from 'discord.js';
 
 export const command = new SlashCommandBuilder()

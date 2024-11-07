@@ -5,7 +5,7 @@ import { getMenuItemsByName } from '../../core/databaseService.js';
 export const command = new SlashCommandBuilder()
   .setName('search')
   .setDescription('Search for menu items by name')
-  .addStringOption(option =>  
+  .addStringOption(option => 
     option.setName('name')
     .setDescription('Name of the menu item to search for')
     .setRequired(true));
@@ -16,8 +16,8 @@ export const action = async (interaction) => {
     const items = await getMenuItemsByName(searchName);
 
     if (items.length > 0) {
-      const result = items.map(item => `Name: ${item.name}, Price: ${item.price}`).join('\n');
-      await interaction.reply(`Found the following items:\n${result}`);
+      const result = items.map(item => `品項：${item.name}，價錢：${item.price}`).join('\n');
+      await interaction.reply(`${result}`);
     } else {
       await interaction.reply(`No items found with the name: ${searchName}`);
     }

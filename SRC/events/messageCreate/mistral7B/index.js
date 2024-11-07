@@ -24,7 +24,7 @@ export const action = async (message) => {
                 temperature: 0.7,
                 top_p: 1,
                 max_tokens: 8000,
-                min_tokens: 0,
+                // min_tokens: 0,
                 stream: false,
                 stop: "\0",
                 random_seed: 99,
