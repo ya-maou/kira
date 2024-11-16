@@ -6,15 +6,12 @@ export const event = {
 };
 
 export const action = async (message) => {
-    if (message.author.bot) return; 
-
-    const botUser = message.client.user; 
+    if (message.author.bot) return;
+    const botUser = message.client.user;
 
     // 檢查用戶是否有標註 @KIRA
-    if (!message.mentions.has(botUser)) return; 
-
+    if (!message.mentions.has(botUser) || message.content.startsWith("!")) return; 
     const prompt = message.content.replace(`<@${botUser.id}>`, '').trim(); 
-
     try {
         // 調用 Mistral API
         const response = await axios.post(
@@ -53,6 +50,5 @@ export const action = async (message) => {
         await message.reply(reply);   
     } catch (error) {
         console.error('Mistral API 調用失敗:', error.response ? error.response.data : error.message);
-        //await message.reply('抱歉，我無法生成回應。');  
     }
 };
