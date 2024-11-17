@@ -9,11 +9,11 @@ export const action = async (message) => {
     if (message.author.bot) return;
     const botUser = message.client.user;
 
-    // 檢查用戶是否有標註 @KIRA
-    if (!message.mentions.has(botUser) || message.content.startsWith("!")) return; 
+    // @KIRA
+    if (!message.mentions.has(botUser) || message.content.startsWith("!")) return;
+
     const prompt = message.content.replace(`<@${botUser.id}>`, '').trim(); 
     try {
-        // 調用 Mistral API
         const response = await axios.post(
             'https://api.mistral.ai/v1/chat/completions',  
             {

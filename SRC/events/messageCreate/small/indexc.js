@@ -8,7 +8,6 @@ export const event = {
 export const action = async (message) => {
     if (message.author.bot) return; // 忽略機器人的訊息
     const botUser = message.client.user;
-
     // 檢查用戶是否標註了 @KIRA 且訊息開頭有 "!"
     if (!message.mentions.has(botUser) || !message.content.startsWith("!")) return;
     
@@ -42,6 +41,6 @@ export const action = async (message) => {
         await message.reply(reply); // 回覆用戶
     } catch (error) {
         console.error('GPT4All API 調用失敗:', error.response ? error.response.data : error.message);
-        await message.reply('抱歉，我無法生成回應。'); // 回應用戶錯誤訊息
+        // await message.reply('抱歉，我無法生成回應。'); // 回應用戶錯誤訊息
     }
 };
